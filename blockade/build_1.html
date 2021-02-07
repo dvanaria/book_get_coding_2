@@ -7,7 +7,24 @@
     </head>
 
     <body>
-        placeholder text here
+        <canvas id="playfield" width="480" height="360"></canvas> <br/>
+        <input type="button" onclick="draw()" value="Draw"/> <br/>
+        <input type="button" onclick="remove()" value="Clear"/> <br/>
+    <script>
+        var gameboard = document.getElementById("playfield");
+        var draw_context = gameboard.getContext("2d");
+        draw_context.fillStyle = "grey";
+        draw_context.fillRect(0,0,480,360);
+        function draw() {
+            draw_context.fillStyle = "blue";
+            draw_context.fillRect(1,1,30,30);
+        }
+        function remove() {
+            draw_context.clearRect(0,0,480,360);
+            draw_context.fillStyle = "grey";
+            draw_context.fillRect(0,0,480,360);
+        }
+    </script>
     </body>
 
 </htnl>
