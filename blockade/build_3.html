@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8"/>
+
+        <title> BLOCKADE </title>
+
+    </head>
+
+    <body>
+
+        <canvas id="draw_area" width=300 height=300></canvas>
+        <br>
+        <input type="button" onclick="draw_square()" value="Draw Square"/>
+        <br>
+        <input type="button" onclick="erase_square()" value="Erase Square"/>
+        <br>
+
+        <script>
+
+            var w = 300;
+            var h = 300;
+            var b = 10; // size of block, so grid is 30 x 30 blocks
+            var insert_x = 0;
+            var insert_y = 0;
+
+            var board = [ 
+                "##############################", 
+                "#                            #",
+                "#                            #",
+                "#                            #",
+                "#                            #",
+                "#                            #",
+                "#        ###                 #",
+                "#       #   #                #",
+                "#       #   #                #",
+                "#       #   #                #",
+                "#        ###                 #",
+                "#                            #",
+                "#                            #",
+                "#                            #",
+                "#                            #",
+                "#                            #",
+                "#                            #",
+                "#                            #",
+                "#                            #",
+                "#                            #",
+                "#                            #",
+                "#                            #",
+                "#                            #",
+                "#                            #",
+                "#                            #",
+                "#                            #",
+                "#                            #",
+                "#                            #",
+                "#                            #",
+                "##############################" ]
+
+            var draw_area_object = document.getElementById("draw_area");
+            var drawing_context = draw_area_object.getContext("2d");
+
+            drawing_context.fillStyle = "grey";
+            drawing_context.fillRect(0,0,w,h);
+
+            board.forEach(check_line);
+
+            function check_line(value, index, array) {
+                value = value.split('');
+                value.forEach(check_character);
+                insert_x = 0;
+                insert_y += b;
+            }
+
+            function check_character(value, index, array) {
+                if(value == '#') {
+                    drawing_context.fillStyle = "black";
+                    drawing_context.fillRect(insert_x,insert_y,b,b);
+                }
+                insert_x += b;
+            }
+
+            function draw_square() {
+                drawing_context.fillStyle = "red";
+                drawing_context.fillRect(25,25,100,100);
+            }
+
+            function erase_square() {
+                drawing_context.fillStyle = "grey";
+                drawing_context.fillRect(25,25,100,100);
+            }
+
+        </script>
+
+    </body>
+
+</htnml>
