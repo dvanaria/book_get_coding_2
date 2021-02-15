@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8"/>
+        <title> BLOCKADE </title>
+
+    </head>
+
+    <body>
+
+        <canvas id="canvas_element" width=300 height=300></canvas>
+        <br>
+        <input type="button" onclick="play_game()"    value="  Play Game   "/>
+        <br>
+        <input type="button" onclick="pause_game()"   value="  Pause Game  "/>
+        <br>
+        <input type="button" onclick="restart_game()" value=" Restart Game "/>
+        <br>
+
+        <script>
+
+            var w = 300;
+            var h = 300;
+            var b = 10; // size of block, so grid is 30 x 30 blocks
+
+            var board = [ 
+                "##############################", 
+                "#                            #",
+                "#                            #",
+                "#                            #",
+                "#                            #",
+                "#                            #",
+                "#        ###                 #",
+                "#       #   #                #",
+                "#       #   #                #",
+                "#       #   #                #",
+                "#        ###                 #",
+                "#                            #",
+                "#                            #",
+                "#                            #",
+                "#                            #",
+                "#                            #",
+                "#                            #",
+                "#                            #",
+                "#                            #",
+                "#                            #",
+                "#                            #",
+                "#                            #",
+                "#                            #",
+                "#                            #",
+                "#                            #",
+                "#                            #",
+                "#                            #",
+                "#                            #",
+                "#                            #",
+                "##############################" ]
+
+            var canvas_object = document.getElementById("canvas_element");
+            var drawing_context = canvas_object.getContext("2d");
+
+            // clear playfield
+            drawing_context.fillStyle = "grey";
+            drawing_context.fillRect(0,0,w,h);
+
+                // draw game board
+                var insert_x = 0;
+                var insert_y = 0;
+
+                board.forEach(check_line);
+
+                function check_line(value, index, array) {
+                    value = value.split('');
+                    value.forEach(check_character);
+                    insert_x = 0;
+                    insert_y += b;
+                }
+
+                function check_character(value, index, array) {
+                    if(value == '#') {
+                        drawing_context.fillStyle = "black";
+                        drawing_context.fillRect(insert_x, insert_y, b, b);
+                    }
+                    insert_x += b;
+                }
+            
+            function play_game() {
+                drawing_context.fillStyle = "red";
+                drawing_context.fillRect(25,25,100,100);
+            }
+
+            function pause_game() {
+                drawing_context.fillStyle = "grey";
+                drawing_context.fillRect(25,25,100,100);
+            }
+            
+            function restart_game() {
+                drawing_context.fillStyle = "grey";
+                drawing_context.fillRect(25,25,100,100);
+            }
+
+        </script>
+
+    </body>
+
+</htnml>
